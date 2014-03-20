@@ -5,6 +5,8 @@
 TOPDIR=@top_srcdir@
 BUILDDIR=@top_builddir@
 
+AUTOMAKE_OPTIONS = subdir-objects
+
 #
 # All the include files - avoid flattening of dirs by using nobase
 #
@@ -160,6 +162,7 @@ nobase_include_HEADERS = \
 	actions/gauge/gaugeacts/aniso_sym_shared_functions.h \
 	actions/gauge/gaugeacts/wilson_gaugeact_params.h \
 	actions/gauge/gaugeacts/wilson_gaugeact.h \
+	actions/gauge/gaugeacts/ReverceMC_gaugeact.h \
 	actions/gauge/gaugeacts/spatial_wilson_gaugeact.h \
 	actions/gauge/gaugeacts/temporal_wilson_gaugeact.h \
 	actions/gauge/gaugeacts/wilson_coarse_fine_gaugeact.h \
@@ -1114,6 +1117,7 @@ libchroma_a_SOURCES = \
 	actions/gauge/gaugeacts/aniso_sym_shared_functions.cc \
 	actions/gauge/gaugeacts/wilson_gaugeact_params.cc \
 	actions/gauge/gaugeacts/wilson_gaugeact.cc \
+	actions/gauge/gaugeacts/ReverceMC_gaugeact.cc \
 	actions/gauge/gaugeacts/spatial_wilson_gaugeact.cc \
 	actions/gauge/gaugeacts/temporal_wilson_gaugeact.cc \
 	actions/gauge/gaugeacts/wilson_coarse_fine_gaugeact.cc \

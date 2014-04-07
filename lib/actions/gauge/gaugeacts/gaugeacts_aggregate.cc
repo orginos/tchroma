@@ -7,7 +7,8 @@
 #include "actions/gauge/gaugeacts/gaugeacts_aggregate.h"
 
 #include "actions/gauge/gaugeacts/gaugeact_factory.h"
-#include "actions/gauge/gaugeacts/ReverseMC_gaugeact.h"
+//#include "actions/gauge/gaugeacts/ReverseMC_gaugeact.h"
+#include "actions/gauge/gaugeacts/ReverceMC_gaugeact.h"
 #include "actions/gauge/gaugeacts/plaq_gaugeact.h"
 #include "actions/gauge/gaugeacts/rect_gaugeact.h"
 #include "actions/gauge/gaugeacts/plaq_plus_spatial_two_plaq_gaugeact.h"
@@ -78,7 +79,8 @@ namespace Chroma
 	success &= AnisoSpectrumGaugeActEnv::registerAll();
 	success &= AnisoSymSpatialGaugeActEnv::registerAll();	
 	success &= AnisoSymTemporalGaugeActEnv::registerAll();
-	success &= ReverseMCGaugeActEnv::registerAll();
+	//success &= ReverseMCGaugeActEnv::registerAll();
+	success &= ReverceMCGaugeActEnv::registerAll();
 
 	registered = true;
       }

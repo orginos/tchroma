@@ -91,7 +91,7 @@ namespace Chroma
 		  int mu, int cb) const;
 
       //This function will be called in the monomials and set the betas.
-      void setbeta(const Handle< GaugeState<P,Q> >& state, const multi1d<LatticeReal> & input);
+      void setbeta(const Handle< GaugeState<P,Q> >& state);
       //void setbeta(multi1d<LatticeColorMatrix>& result,
       		 //const Handle< GaugeState<P,Q> >& state) const;
       //Also used in the monomials, sets beta lattice to one value.

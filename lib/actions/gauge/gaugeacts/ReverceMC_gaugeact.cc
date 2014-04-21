@@ -9,6 +9,7 @@
 #include "actions/gauge/gaugestates/gauge_createstate_aggregate.h"
 #include "io/aniso_io.h"
 #include <math.h>
+#include <stdlib.h>     /* srand, rand */
 //Include math so exponents and logs may be computed.
 
 namespace Chroma
@@ -49,18 +50,6 @@ namespace Chroma
     {
       XMLReader paramtop(xml_in, path);
       InitI();
-      /*param.I[0][1] = 0;
-      param.I[0][2] = 1;
-      param.I[0][3] = 2;
-      param.I[1][2] = 3;
-      param.I[1][3] = 4;
-      param.I[2][3] = 5;
-      param.I[1][0] = I[0][1];
-      param.I[2][0] = I[0][2];
-      param.I[3][0] = I[0][3];
-      param.I[2][1] = I[1][2];
-      param.I[3][1] = I[1][3];
-      param.I[3][2] = I[2][3];*/
       Normalization = false;
       beta = multi1d<LatticeReal> (Nd*(Nd-1)/2);
       //beta = multi1d<LatticeReal> (6);
@@ -162,9 +151,27 @@ namespace Chroma
 
     //Set the betas for Reverce MC.
     //void setbeta(const multi1d<LatticeReal> & input)
-    void GaugeAct::setbeta(const Handle< GaugeState<P,Q> >& state, const multi1d<LatticeReal> & input)
+    void GaugeAct::setbeta(const Handle< GaugeState<P,Q> >& state)
     {
-    	param.beta = input;
+    	const multi1d<LatticeColorMatrix>& u = state->getLinks();
+    	double Random;
+    	double Random2;
+    	for(int mu=0; mu < Nd; mu++)
+    	{
+    		for(int nu = 0; nu < Nd; nu++)
+    		{
+    			if (mu == nu) continue;
+    			LatticeColorMatrix tmp_1 = shift(u[nu], FORWARD, mu);
+    			LatticeColorMatrix tmp_2 = shift(u[mu], FORWARD, nu);
+    			LatticeColorMatrix up_plq   = u[mu]*tmp_1*adj(tmp_2)*adj(u[nu]);
+    			LatticeReal Action = real(trace(up_plq));
+    			Random = ((double)rand()/(double)RAND_MAX);
+    			LatticeReal Random2 = Random;
+    			Random2 = Random2*Action*(1/(exp((param.beta_initial - param.alpha)*Action) - 1) - 1/(1 - exp((param.alpha - param.beta_initial)*Action)));
+    			Random2 = Random2 + 1/(1 - exp((param.alpha - param.beta_initial)*Action));
+    			param.beta[param.I[mu][nu]] = param.beta_initial - 1/Action*log(Random*((exp((param.beta_initial - param.alpha)*Action) - 1))/Action);
+    		}
+    	}
     	param.Normalization = true;
     }
     //void restorebeta()

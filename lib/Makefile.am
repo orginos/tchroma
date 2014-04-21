@@ -405,6 +405,7 @@ nobase_include_HEADERS = \
 	update/molecdyn/monomial/abs_monomial.h \
 	update/molecdyn/monomial/monomial_factory.h \
 	update/molecdyn/monomial/gauge_monomial.h \
+	update/molecdyn/monomial/ContinuousBeta_monomial.h \
 	update/molecdyn/monomial/force_monitors.h \
 	update/molecdyn/monomial/bigfloat.h \
 	update/molecdyn/monomial/remez.h \
@@ -1291,6 +1292,7 @@ libchroma_a_SOURCES = \
 	update/heatbath/mciter.cc \
 	update/molecdyn/hamiltonian/exact_hamiltonian.cc \
 	update/molecdyn/monomial/gauge_monomial.cc \
+	update/molecdyn/monomial/ContinuousBeta_monomial.cc \
 	update/molecdyn/monomial/force_monitors.cc \
 	update/molecdyn/monomial/rat_approx_aggregate.cc \
 	update/molecdyn/monomial/remez_rat_approx.cc \
